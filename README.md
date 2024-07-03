@@ -1,69 +1,67 @@
 
-# Smart Contract Project: Implementing require(), assert(), and revert() Statements
+#  Smart Contract Project: Implementing require(), assert(), and revert() Statements
 ## OVERVIEW
 
-This smart contract shows how to handle errors in Solidity using require(), assert(), and revert() statements. It includes functions which perform division operations and also ensures that the denominator is not zero , preventing division by zero errors. It demonstrates the use of these error-handling mechanisms to ensure safe  execution of operations.
 
-## DISCRIPTION
+The KpopAlbums Solidity program demonstrates basic error handling using require(), assert(), and revert() statements. It includes functions to add, check, and remove K-pop albums in a small local store scenario. This contract is designed for those new to Solidity and error handling on the Ethereum blockchain.
 
-This program is a simple contract written in Solidity, which is a programming language used for developing smart contracts on the Ethereum blockchain. This contract has functions that performs division operations by ensuring that the denominator is not zero. It uses the concept of functions and error handling.
-
-The Require function sets a new value for the result if it meets the condition that the input denominator is greater than zero. It uses require() for input validation.
-
-The Assert function sets a new value for the result and uses assert() to ensure that the denominator is not zero. If the denominator is zero then it will give a generic error .
-
-The Revert function performs a division but requires that the Denominator cannot be zero. If the denominator is zero, the function will revert with a specific error message using the revert() statement. Here the specific message is "Denominator cannot be zero, please provide a valid denominator which must be a positive number".
-
-It's essential to use these error handling statements wisely to maintain the correctness of your smart contract.
-
+## Description
+The KpopAlbums contract is a smart contract written in Solidity for the Ethereum blockchain. It manages a store's inventory of K-pop albums with the feature  to
+Add Albums (ensuring that the number of albums added is greater than zero),
+to check albums (ensuring that the total number of albums does not exceed the maximum limit) and to remove Albums (ensuring that the number of albums to be removed does not exceed the current inventory).This contract demonstrates the use of error handling mechanisms in Solidity, providing a secure and standard way to manage a small store's inventory.
 
 ## Getting Started
+## Executing program
+To run this program, you will need to use Remix, an online Solidity IDE. Follow these steps to get started:
 
-### Executing Program
-
-To run the program , make use of Remix which is an online Solidity IDE .
-
-To start , go to the remix website at [Remix IDE](https://remix.ethereum.org/).
-
-Once you are on the Remix website, create a new file by clicking on the "+" icon in the left-hand sidebar. Save the file with a .sol extension (here, functionsnerrors.sol). Copy and paste the following code into the file:
+Visit Remix: Go to https://remix.ethereum.org/. Create a New File: Click on the "+" icon in the left-hand sidebar to create a new file. Save the File: Save the file with a .sol extension (here, kpopalbums1.sol). Copy and paste the following code into the new file:
 
 ```solidity
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract DivideByZero {
-    uint public result;
-
-    function Require(uint numerator, uint denominator) public {
-        require( denominator != 0, "Denominator cannot be zero");
-        result = numerator / denominator;
+contract KpopAlbums {
+    uint public totalAlbums;
+    uint constant max_albums = 250; 
+  
+    function addAlbums(uint albums) public {
+        require(albums > 0, "NO NO NO ! The number of albums must be greater than zero.");
+        totalAlbums += albums;
+    }
+  
+    function checkAlbums() public view {
+        assert(totalAlbums <= max_albums);
     }
 
-    function Assert(uint numerator, uint denominator) public {
-        assert( denominator != 0);
-        result = numerator / denominator;
-    }
-
-    function Revert(uint numerator, uint denominator) public pure returns (uint) {
-        if( denominator == 0){
-
-        revert("Denominator cannot be zero , please provide a valid denominator which must be a positive number");
+    function removeAlbums(uint albums) public {
+        if (albums > totalAlbums) {
+            revert("Oops! You can't remove more albums than currently exist.");
         }
-        return numerator / denominator;
+        totalAlbums -= albums;
     }
 }
+
 ```
 
-To compile the code, click on the "Solidity Compiler" tab in the left-hand sidebar. Make sure the "Compiler" option is set to "0.8.0" , and then click on the "Compile functionsnerrors.sol" button.
+To run the program, follow these steps:
 
-Once the code is compiled, you can deploy the contract by clicking on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "DivideByZero-functionsnerrors.sol" contract from the dropdown menu, and then click on the "Deploy" button.
+Compile the Code:
 
-Once the contract is deployed, interact with it by calling the Require, Assert, and Revert functions to set the result and perform division. Use the input fields to provide values for numerator and denominator. You can click on the respective function buttons to execute the functions and observe the results and error messages.
+Click on the "Solidity Compiler" tab in the left-hand sidebar. Ensure the "Compiler" option is set to a compatible version, such as "0.8.0". Click on the "Compile kpopalbums1.sol" button. Deploy the Contract:
 
-This smart contract clearly demonstrates how to handle errors effectively, preventing unintended operations and ensuring safe execution of functions.
+Click on the "Deploy & Run Transactions" tab in the left-hand sidebar. Select the "Albums" contract from the dropdown menu. Click on the "Deploy" button. Interact with the Contract:
+1). Adding Albums: Call the addAlbums function with the number of albums to add.
+2). Checking Albums: Call the checkAlbums function to ensure the total number of albums does not exceed the maximum limit.
+3). Removing Albums: Call the removeAlbums function with the number of albums to remove.
 
- 
  ## Authors
 Ananya Jaswal
 
 [LinkedIn](www.linkedin.com/in/ananya-jaswal-8545b1275)
+
+
+
+
+
+
+

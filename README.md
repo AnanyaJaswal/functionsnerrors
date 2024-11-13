@@ -1,5 +1,5 @@
 
-#  Smart Contract Project: Implementing require(), assert(), and revert() Statements
+#  Smart Contract Project: Inventory Smart Contract  
 ## OVERVIEW
 
 

@@ -3,10 +3,10 @@
 ## OVERVIEW
 
 
-The KpopAlbums Solidity program demonstrates basic error handling using require(), assert(), and revert() statements. It includes functions to add, check, and remove K-pop albums in a small local store scenario. This contract is designed for those new to Solidity and error handling on the Ethereum blockchain.
+The Solidity program demonstrates basic error handling using require(), assert(), and revert() statements. It includes functions to add, check, and remove K-pop albums in a small local store scenario. This contract is designed for those new to Solidity and error handling on the Ethereum blockchain.
 
 ## Description
-The KpopAlbums contract is a smart contract written in Solidity for the Ethereum blockchain. It manages a store's inventory of K-pop albums with the feature  to
+The Albums contract is a smart contract written in Solidity for the Ethereum blockchain. It manages a store's inventory of K-pop albums with the feature  to
 Add Albums (ensuring that the number of albums added is greater than zero),
 to check albums (ensuring that the total number of albums does not exceed the maximum limit) and to remove Albums (ensuring that the number of albums to be removed does not exceed the current inventory).This contract demonstrates the use of error handling mechanisms in Solidity, providing a secure and standard way to manage a small store's inventory.
 
